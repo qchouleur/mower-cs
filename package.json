@@ -4,7 +4,8 @@
   "description": "Automatic lawn mower - technical test",
   "main": "dist/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
     "watch": "tsc-watch --onSuccess \"node ./dist/app.js\"",
     "lint": "eslint --ext .ts ./src/",
     "lint:fix": "npm run lint -- --fix",
