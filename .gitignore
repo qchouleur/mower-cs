@@ -4,3 +4,5 @@ dist/
 # Dependency directory
 node_modules/
 
+# test coverage
+coverage/
