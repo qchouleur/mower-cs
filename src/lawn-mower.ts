@@ -71,7 +71,7 @@ export class LawnMower {
     } else {
       newDirectionIndex = currentDirectionIndex + directionIncrement;
     }
-    this.direction = Object.values(Direction)[newDirectionIndex];
+    this.direction = directions[newDirectionIndex];
   }
 
   getPosition(): string {
