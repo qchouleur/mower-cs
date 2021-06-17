@@ -12,7 +12,9 @@ export class Interpreter {
    * <mower-n-x-position> <mower-n-y-position> <mower-n-direction>
    * <mower-n-instructions...>
    */
-  process(source: string): string {}
+  process(source: string): string {
+    return '';
+  }
 
   parseLawnInfo(source: string): Lawn {
     const rawLawnInfo = source.split(' ');
@@ -22,21 +24,21 @@ export class Interpreter {
       );
     }
 
-    const [width, height] = rawLawnInfo.map((x) => Number.parseInt(x));
+    const [xTopCorner, yTopCorner] = rawLawnInfo.map((x) => Number.parseInt(x));
 
-    if (Number.isNaN(width) || width <= 0) {
+    if (Number.isNaN(xTopCorner) || xTopCorner <= 0) {
       throw new Error(
-        `Invalid lawn width, should be a positive integer, received ${rawLawnInfo[0]}`,
+        `Invalid lawn corner X position, should be a positive integer, received ${rawLawnInfo[0]}`,
       );
     }
 
-    if (Number.isNaN(height) || height <= 0) {
+    if (Number.isNaN(yTopCorner) || yTopCorner <= 0) {
       throw new Error(
-        `Invalid lawn height, should be a positive integer, received ${rawLawnInfo[0]}`,
+        `Invalid lawn corner Y position, should be a positive integer, received ${rawLawnInfo[0]}`,
       );
     }
 
-    return new Lawn(width, height);
+    return new Lawn(xTopCorner + 1, yTopCorner + 1);
   }
 
   parseMowerInfo(source: string, lawn: Lawn): LawnMower {
@@ -65,11 +67,21 @@ export class Interpreter {
       );
     }
 
-    const direction: Direction = Direction[rawDirection as keyof typeof Direction];
+    const direction: Direction = this.parseDirection(rawDirection);
     return new LawnMower(xPosition, yPosition, direction, lawn);
   }
 
   parseMowerInstructions(source: string): Array<Instruction> {
     return new Array<Instruction>();
+  }
+
+  private parseDirection(source: string): Direction {
+    const keys = Object.keys(Direction).filter(x => Direction[x as keyof typeof Direction] === source);
+
+    if (keys.length === 0) {
+      throw new Error(`Invalid direction value, received ${source}`);
+    }
+
+    return Direction[keys[0] as keyof typeof Direction];
   }
 }
