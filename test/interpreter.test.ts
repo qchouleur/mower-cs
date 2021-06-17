@@ -1,6 +1,9 @@
 import { Lawn } from '../src/lawn';
 import { Interpreter } from '../src/interpreter';
 import { Direction } from '../src/direction';
+import { Forward } from '../src/instructions/forward';
+import { RotateRight } from '../src/instructions/rotate-right';
+import { RotateLeft } from '../src/instructions/rotate-left';
 
 const interpreter = new Interpreter();
 
@@ -44,27 +47,27 @@ test('Parsing mower info with more than three parameters should throw', () => {
 });
 
 test('Parsing mower with invalid x position should throw', () => {
-  const lawn = new Lawn(1,1);
+  const lawn = new Lawn(1, 1);
 
   expect(() => interpreter.parseMowerInfo('-1 1 N', lawn)).toThrowError();
   expect(() => interpreter.parseMowerInfo('X 1 N', lawn)).toThrowError();
 });
 
 test('Parsing mower with invalid y position should throw', () => {
-  const lawn = new Lawn(1,1);
+  const lawn = new Lawn(1, 1);
 
   expect(() => interpreter.parseMowerInfo('1 -1 N', lawn)).toThrowError();
   expect(() => interpreter.parseMowerInfo('1 Y N', lawn)).toThrowError();
 });
 
 test('Parsing mower with invalid direcition should throw', () => {
-  const lawn = new Lawn(1,1);
+  const lawn = new Lawn(1, 1);
 
   expect(() => interpreter.parseMowerInfo('1 1 Z', lawn)).toThrowError();
 });
 
 test('Parsing mower info with valid parameters should return mower instance', () => {
-  const lawn = new Lawn(1,1);
+  const lawn = new Lawn(1, 1);
 
   const actual = interpreter.parseMowerInfo('0, 0, N', lawn);
 
@@ -74,19 +77,32 @@ test('Parsing mower info with valid parameters should return mower instance', ()
 });
 
 test('Parsing F mower instruction should return Forward instruction', () => {
+  const actual = interpreter.parseMowerInstructions('F')[0];
+
+  expect(actual).toBe(Forward);
 });
 
 test('Parsing R mower instruction should return Rotate right instruction', () => {
+  const actual = interpreter.parseMowerInstructions('R')[0];
+
+  expect(actual).toBe(RotateRight);
 });
 
 test('Parsing L mower instruction should return Rotate left instruction', () => {
+  const actual = interpreter.parseMowerInstructions('L')[0];
+
+  expect(actual).toBe(RotateLeft);
 });
 
 test('Parsing instruction with unknown instruction letter should throw', () => {
+  expect(() => interpreter.parseMowerInstructions('X')).toThrowError();
 });
 
 test('Parsing multiple instructions should return instructions', () => {
+  const actual = interpreter.parseMowerInstructions('RF');
+
+  expect(actual[0]).toBe(RotateRight);
+  expect(actual[1]).toBe(Forward);
 });
 
-test('Processing test instruction should return expected mower positions', () => {
-});
+test('Processing test instruction should return expected mower positions', () => {});
