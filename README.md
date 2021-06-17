@@ -18,7 +18,7 @@ npm i
 npm run build
 
 # run the app with a given file
-node ./dist/app.js -f ./test-file.txt
+node ./dist/app.js -f ./samples/test-file.txt
 ```
 
 ## License

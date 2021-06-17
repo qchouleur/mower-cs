@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
-    "watch": "tsc-watch --onSuccess \"node ./dist/app.js -f ./test-file.txt\"",
-    "technical-test": "npm run build && node ./dist/app.js -f ./test-file.txt",
+    "watch": "tsc-watch --onSuccess \"node ./dist/app.js -f ./samples/test-file.txt\"",
+    "technical-test": "npm run build && node ./dist/app.js -f ./samples/test-file.txt",
     "lint": "eslint --ext .ts ./src/",
     "lint:fix": "npm run lint -- --fix",
     "test": "jest",
@@ -35,4 +35,4 @@
   "dependencies": {
     "yargs": "^16.2.0"
   }
-}
+} 
