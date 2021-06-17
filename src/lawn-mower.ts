@@ -58,9 +58,11 @@ export class LawnMower {
 
     const directions = Object.values(Direction);
     const currentDirectionIndex: number = directions.indexOf(this.direction);
-    const newDirectionIndex = (currentDirectionIndex + directionIncrement + directions.length) % directions.length;
-    
-   this.direction = directions[newDirectionIndex];
+    const newDirectionIndex =
+      (currentDirectionIndex + directionIncrement + directions.length) %
+      directions.length;
+
+    this.direction = directions[newDirectionIndex];
   }
 
   getPosition(): string {
