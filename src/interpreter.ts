@@ -16,7 +16,10 @@ export class Interpreter {
    * <mower-n-instructions...>
    */
   process(source: string): string {
-    const lines = source.split(/\r?\n/).map(l => l.trim()).filter(l => l !== '');
+    const lines = source
+      .split(/\r?\n/)
+      .map((l) => l.trim())
+      .filter((l) => l !== '');
 
     // There should be at least be 3 lines, the number of lines mower lines should also be pair
     if (lines.length < 3 || (lines.length - 1) % 2 !== 0) {

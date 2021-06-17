@@ -55,15 +55,18 @@ export class LawnMower {
   rotate(rotationDirection: RotationDirection): void {
     const directionIncrement =
       rotationDirection === RotationDirection.Clockwise ? 1 : -1;
-    
+
     const directions = Object.values(Direction);
     const currentDirectionIndex: number = directions.indexOf(this.direction);
-     
+
     let newDirectionIndex: number;
 
-    if(directionIncrement < 0 && currentDirectionIndex === 0) {
+    if (directionIncrement < 0 && currentDirectionIndex === 0) {
       newDirectionIndex = directions.length - 1;
-    } else if (directionIncrement > 0 && currentDirectionIndex === (directions.length - 1)) {
+    } else if (
+      directionIncrement > 0 &&
+      currentDirectionIndex === directions.length - 1
+    ) {
       newDirectionIndex = 0;
     } else {
       newDirectionIndex = currentDirectionIndex + directionIncrement;
