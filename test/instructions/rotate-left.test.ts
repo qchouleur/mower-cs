@@ -12,6 +12,6 @@ test('Executing the rotate left instruction on a mower should change direction',
   lawnMower.execute(rotateLeftInstruction);
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('0, 0, W');
+  expect(actual).toBe('0 0 W');
 });
 

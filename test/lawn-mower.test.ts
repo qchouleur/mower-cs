@@ -22,7 +22,7 @@ test('Initializing a lawnMower should use the given parameters', () => {
 
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('0, 0, N');
+  expect(actual).toBe('0 0 N');
 });
 
 test('Rotating the mower clockwise should move to next direction', () => {
@@ -31,7 +31,7 @@ test('Rotating the mower clockwise should move to next direction', () => {
   lawnMower.rotate(RotationDirection.Clockwise);
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('0, 0, E');
+  expect(actual).toBe('0 0 E');
 });
 
 test('Rotating the mower clockwise should return to North after West direction', () => {
@@ -40,7 +40,7 @@ test('Rotating the mower clockwise should return to North after West direction',
   lawnMower.rotate(RotationDirection.Clockwise);
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('0, 0, N');
+  expect(actual).toBe('0 0 N');
 });
 
 test('Rotating the mower anti-clockwise should move to previous direction', () => {
@@ -49,7 +49,7 @@ test('Rotating the mower anti-clockwise should move to previous direction', () =
   lawnMower.rotate(RotationDirection.AntiClockwise);
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('0, 0, E');
+  expect(actual).toBe('0 0 E');
 });
 
 test('Rotating the mower anti-clockwise should return to West after North direction', () => {
@@ -58,7 +58,7 @@ test('Rotating the mower anti-clockwise should return to West after North direct
   lawnMower.rotate(RotationDirection.AntiClockwise);
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('0, 0, W');
+  expect(actual).toBe('0 0 W');
 });
 
 test('Moving the mower with north direction should increase y position', () => {
@@ -67,7 +67,7 @@ test('Moving the mower with north direction should increase y position', () => {
   lawnMower.move();
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('0, 1, N');
+  expect(actual).toBe('0 1 N');
 });
 
 test('Moving the mower with east direction should increase x position', () => {
@@ -76,7 +76,7 @@ test('Moving the mower with east direction should increase x position', () => {
   lawnMower.move();
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('1, 0, E');
+  expect(actual).toBe('1 0 E');
 });
 
 test('Moving the mower with south direction should decrease y position', () => {
@@ -85,7 +85,7 @@ test('Moving the mower with south direction should decrease y position', () => {
   lawnMower.move();
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('0, 0, S');
+  expect(actual).toBe('0 0 S');
 });
 
 test('Moving the mower with west direction should decrease x position', () => {
@@ -94,7 +94,7 @@ test('Moving the mower with west direction should decrease x position', () => {
   lawnMower.move();
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('0, 0, W');
+  expect(actual).toBe('0 0 W');
 });
 
 test('Moving the mower outside of the lawn should not do anything', () => {
@@ -103,5 +103,5 @@ test('Moving the mower outside of the lawn should not do anything', () => {
   lawnMower.move();
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('1, 0, E');
+  expect(actual).toBe('1 0 E');
 });

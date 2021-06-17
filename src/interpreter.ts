@@ -16,7 +16,26 @@ export class Interpreter {
    * <mower-n-instructions...>
    */
   process(source: string): string {
-    return '';
+    const lines = source.split(/\r?\n/);
+
+    // There should be at least be 3 lines, the number of lines mower lines should also be pair
+    if (lines.length < 3 || (lines.length - 1) % 2 !== 0) {
+      throw new Error('Invalid automatic mower file format');
+    }
+
+    const [lawnSource, ...mowerSource] = lines;
+    const lawn: Lawn = this.parseLawnInfo(lawnSource);
+    const output = new Array<string>();
+
+    for (let i = 0; i < mowerSource.length / 2; i++) {
+      const mower = this.parseMowerInfo(mowerSource[i * 2], lawn);
+      const instructions = this.parseMowerInstructions(mowerSource[i * 2 + 1]);
+
+      instructions.forEach((instruction) => mower.execute(instruction));
+      output.push(mower.getPosition());
+    }
+
+    return output.join('\n');
   }
 
   parseLawnInfo(source: string): Lawn {

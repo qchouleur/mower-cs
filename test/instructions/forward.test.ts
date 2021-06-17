@@ -12,6 +12,6 @@ test('Executing the forward instruction on a mower should move it', () => {
   lawnMower.execute(fowardInstruction);
   const actual = lawnMower.getPosition();
 
-  expect(actual).toBe('0, 1, N');
+  expect(actual).toBe('0 1 N');
 });
 

@@ -69,7 +69,7 @@ test('Parsing mower with invalid direcition should throw', () => {
 test('Parsing mower info with valid parameters should return mower instance', () => {
   const lawn = new Lawn(1, 1);
 
-  const actual = interpreter.parseMowerInfo('0, 0, N', lawn);
+  const actual = interpreter.parseMowerInfo('0 0 N', lawn);
 
   expect(actual.x).toBe(0);
   expect(actual.y).toBe(0);
@@ -105,4 +105,33 @@ test('Parsing multiple instructions should return instructions', () => {
   expect(actual[1]).toBe(Forward);
 });
 
-test('Processing test instruction should return expected mower positions', () => {});
+test('Processing test instruction with source of less than 3 lines should throw', () => {
+  const source = `1
+    2`;
+
+  expect(() => interpreter.process(source)).toThrowError();
+});
+
+test('Processing test instruction with source odd mower line count should throw', () => {
+  const source = `lawn
+    mower1
+    mower1
+    mower2`;
+
+  expect(() => interpreter.process(source)).toThrowError();
+});
+
+test('Processing test instruction should return expected mower positions', () => {
+  const source = `5 5
+1 2 N
+LFLFLFLFF
+3 3 E
+FFRFFRFRRF`;
+
+  const output = interpreter.process(source);
+
+  expect(output).toBe(`1 3 N
+5 1 E`);
+});
+
+

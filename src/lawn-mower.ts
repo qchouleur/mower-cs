@@ -72,6 +72,6 @@ export class LawnMower {
   }
 
   getPosition(): string {
-    return `${this.x}, ${this.y}, ${this.direction}`;
+    return `${this.x} ${this.y} ${this.direction}`;
   }
 }
