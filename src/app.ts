@@ -7,7 +7,6 @@ const args = yargs.options({
 }).argv;
 
 try {
-  console.log(args.f);
   const source = fs.readFileSync(args.f as string, 'utf-8');
   console.log(new Interpreter().process(source));
 } catch (err) {
